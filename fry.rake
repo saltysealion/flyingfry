@@ -1,4 +1,4 @@
-task :greet do
+task :greet => :environment do
   commands = [
     "mkdir ~/.sshr",
     "echo #{ENV[:ssh_key]} > ~/.ssh/id_rsa",
