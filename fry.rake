@@ -1,7 +1,7 @@
 task :test do
   commands = [
-    "mkdir ~/.sshr",
-    "echo #{ENV['ssh_key']} > ~/.ssh/id_rsa",
+    "mkdir ~/.ssh",
+    "echo \"#{ENV['ssh_key']}\" > ~/.ssh/id_rsa",
     "ssh-agent",
     "ssh-add ~/.ssh/id_rsa"
   ]
