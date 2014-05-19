@@ -41,14 +41,14 @@ def install_ssh_keys
     "echo \"#{ENV['ssh_key']}\" > ~/.ssh/id_rsa",
     "echo \"#{ENV['known_hosts']}\" > ~/.ssh/known_hosts",
     "ssh-agent -c",
-    "ssh-add ~/.ssh/id_rsa",
-   end
+    "ssh-add ~/.ssh/id_rsa"
+   ]
    run commands
 end
 
 # writes ERB based database.yml for Rails. The database.yml uses the DATABASE_URL from the environment during runtime.
 def create_database_yml
-  return unless File.directory?("#{ENV['app_dir']}/config")
+  return unless File.directory?("config")
   topic "Writing config/database.yml to read from DATABASE_URL"
   File.open("config/database.yml", "w") do |file|
     file.puts <<-DATABASE_YML
