@@ -119,6 +119,3 @@ end
 def topic(message)
   puts "-----> #{message}"
 end
-
-end
-
