@@ -17,7 +17,7 @@ end
 
 def setup_database
   commands = [
-    "cd #{ENV['app_dir']}",
+    "cd /app/#{ENV['app_dir']}/",
     "rake db:create RAILS_ENV=test",
     "rake db:migrate RAILS_ENV=test",
   ]
@@ -48,9 +48,9 @@ end
 
 # writes ERB based database.yml for Rails. The database.yml uses the DATABASE_URL from the environment during runtime.
 def create_database_yml
-  return unless File.directory?("config")
+  return unless File.directory?("/app/#{ENV['app_dir']}/config")
   topic "Writing config/database.yml to read from DATABASE_URL"
-  File.open("config/database.yml", "w") do |file|
+  File.open("/app/#{ENV['app_dir']}/config/database.yml", "w") do |file|
     file.puts <<-DATABASE_YML
 <%
 
