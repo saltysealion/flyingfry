@@ -1,9 +1,9 @@
 task :test do
   install_ssh_keys
   clone_repository
+  bundle
   create_database_yml
   setup_database
-  bundle
   test_app
 end
   
@@ -17,16 +17,15 @@ end
 
 def setup_database
   commands = [
-    "cd /app/#{ENV['app_dir']}/",
     "rake db:create RAILS_ENV=test",
     "rake db:migrate RAILS_ENV=test",
   ]
 
-  run commands
+  Dir.chdir("/app/#{ENV['app_dir']}") { run commands } 
 end
 
 def bundle
-  run ["bundle install --system --without failure"]
+  Dir.chdir("/app/#{ENV['app_dir']}") { run ["bundle install --system --without failure"] }
 end
 
 def clone_repository
